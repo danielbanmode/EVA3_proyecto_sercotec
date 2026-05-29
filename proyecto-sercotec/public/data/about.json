@@ -1,0 +1,25 @@
+{
+  "about": {
+    "descripcion": "Centro de Negocios Santiago de SERCOTEC es un espacio de innovación y colaboración dedicado a fortalecer el ecosistema empresarial. Ofrecemos asesoramiento especializado, capacitación, financiamiento y acceso a redes de negocios para potenciar el crecimiento de las empresas.",
+    "mision": "Contribuir al fortalecimiento competitivo de las micro, pequeñas y medianas empresas a través de servicios integrales de asesoramiento, capacitación y acceso a financiamiento.",
+    "vision": "Ser el referente en la región como centro de innovación empresarial que genera oportunidades de negocio y desarrollo sostenible.",
+    "stats": [
+      {
+        "numero": "2,500+",
+        "label": "Empresas Asesoradas"
+      },
+      {
+        "numero": "15+",
+        "label": "Años de Experiencia"
+      },
+      {
+        "numero": "500+",
+        "label": "Capacitaciones Realizadas"
+      },
+      {
+        "numero": "95%",
+        "label": "Satisfacción del Cliente"
+      }
+    ]
+  }
+}

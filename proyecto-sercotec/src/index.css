@@ -1,0 +1,438 @@
+/* ============================
+   RESET Y VARIABLES GLOBALES
+   ============================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #001a4d;
+  --color-secondary: #3d52a0;
+  --color-accent: #e63946;
+  --color-accent-dark: #d62828;
+  --color-text: #1a1a2e;
+  --color-text-light: #555;
+  --color-bg: #ffffff;
+  --color-bg-light: #f8f9fa;
+  --color-border: #e8e8e8;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+}
+
+/* ============================
+   TIPOGRAFÍA
+   ============================ */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.1rem; }
+h6 { font-size: 1rem; }
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-light);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-accent-dark);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ============================
+   CONTENEDOR Y SECCIONES
+   ============================ */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+section {
+  padding: 4rem 2rem;
+}
+
+/* ============================
+   ESTILOS PARA PÁGINAS
+   ============================ */
+
+main {
+  min-height: calc(100vh - 70px - 300px);
+}
+
+/* Sección Nosotros */
+.section-nosotros {
+  background-color: #f8f9fa;
+  border-top: 4px solid #e63946;
+}
+
+.section-nosotros h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #001a4d;
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.section-nosotros h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #e63946 0%, #d62828 100%);
+  border-radius: 2px;
+}
+
+.about-content {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.about-content > p {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 2.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 26, 77, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #e8e8e8;
+  border-top: 4px solid #e63946;
+}
+
+.stat-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 26, 77, 0.15);
+}
+
+.stat-item h3 {
+  color: #e63946;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+
+.stat-item p {
+  color: #555;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Sección Servicios */
+.section-servicios {
+  background-color: white;
+  border-top: 4px solid #e63946;
+}
+
+.section-servicios h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #001a4d;
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.section-servicios h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #e63946 0%, #d62828 100%);
+  border-radius: 2px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 2.5rem;
+}
+
+/* Sección Testimonios */
+.section-testimonios {
+  background-color: #f8f9fa;
+  padding: 4rem 2rem;
+  border-top: 4px solid #e63946;
+}
+
+.section-testimonios h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #001a4d;
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.section-testimonios h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #e63946 0%, #d62828 100%);
+  border-radius: 2px;
+}
+
+/* Sección FAQs */
+.section-faqs {
+  background-color: white;
+  border-top: 4px solid #e63946;
+}
+
+.section-faqs h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #001a4d;
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.section-faqs h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #e63946 0%, #d62828 100%);
+  border-radius: 2px;
+}
+
+.faqs-list {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid #e8e8e8;
+  transition: all 0.3s ease;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border: 2px solid #e8e8e8;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #001a4d;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-question:hover {
+  background-color: #f0f2f5;
+  border-color: #e63946;
+  transform: translateX(4px);
+}
+
+.faq-question.active {
+  background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+}
+
+.faq-icon {
+  font-size: 1.3rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.faq-question.active .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 1.5rem;
+  background: white;
+  animation: slideDown 0.3s ease-out;
+  border-left: 4px solid #e63946;
+  margin-top: -1px;
+}
+
+.faq-answer p {
+  margin: 0;
+  color: #555;
+  line-height: 1.8;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 500px;
+  }
+}
+
+/* Página Contacto */
+.contacto-page {
+  background-color: white;
+}
+
+.contacto-hero {
+  background: linear-gradient(135deg, #001a4d 0%, #3d52a0 50%, #4a5f9e 100%);
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contacto-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: rgba(230, 57, 70, 0.08);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.contacto-hero h1 {
+  color: white;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+  font-size: 2.8rem;
+  font-weight: 800;
+}
+
+.contacto-hero p {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.contacto-content {
+  padding: 4rem 2rem;
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  section {
+    padding: 2rem 1rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .stat-item {
+    padding: 1.5rem;
+  }
+
+  .stat-item h3 {
+    font-size: 2rem;
+  }
+
+  .faq-question {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .faq-answer {
+    padding: 1rem;
+  }
+
+  .contacto-hero {
+    padding: 3rem 1rem;
+  }
+
+  .contacto-hero h1 {
+    font-size: 2rem;
+  }
+
+  .contacto-content {
+    padding: 2rem 1rem;
+  }
+}

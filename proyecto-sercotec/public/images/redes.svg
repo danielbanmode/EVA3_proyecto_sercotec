@@ -1,0 +1,22 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#001a4d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e63946;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#grad6)"/>
+  <circle cx="140" cy="110" r="35" fill="#ffffff" opacity="0.9"/>
+  <circle cx="140" cy="110" r="25" fill="none" stroke="#001a4d" stroke-width="2"/>
+  <text x="140" y="118" font-size="12" font-weight="bold" text-anchor="middle" fill="#001a4d">RED</text>
+  <circle cx="260" cy="110" r="35" fill="#ffffff" opacity="0.9"/>
+  <circle cx="260" cy="110" r="25" fill="none" stroke="#001a4d" stroke-width="2"/>
+  <text x="260" y="118" font-size="12" font-weight="bold" text-anchor="middle" fill="#001a4d">RED</text>
+  <line x1="175" y1="110" x2="225" y2="110" stroke="#e63946" stroke-width="2"/>
+  <circle cx="200" cy="110" r="4" fill="#e63946"/>
+  <rect x="100" y="180" width="200" height="80" rx="8" fill="#ffffff" opacity="0.8"/>
+  <text x="200" y="205" font-size="14" font-weight="bold" text-anchor="middle" fill="#001a4d">Conexión entre</text>
+  <text x="200" y="225" font-size="14" font-weight="bold" text-anchor="middle" fill="#001a4d">empresarios</text>
+  <text x="200" y="250" font-size="12" text-anchor="middle" fill="#3d52a0">Colaboración y oportunidades</text>
+  <text x="200" y="290" font-size="18" font-weight="bold" text-anchor="middle" fill="#ffffff">Redes Empresariales</text>
+</svg>

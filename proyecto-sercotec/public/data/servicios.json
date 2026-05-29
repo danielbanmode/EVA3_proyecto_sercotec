@@ -1,0 +1,46 @@
+{
+  "servicios": [
+    {
+      "id": 1,
+      "titulo": "Asesoramiento Empresarial",
+      "descripcion": "Asesoramiento profesional para empresas en etapa de crecimiento, planificación estratégica y optimización de procesos.",
+      "imagen": "/images/asesoramiento.png",
+      "servicio": "asesoramiento"
+    },
+    {
+      "id": 2,
+      "titulo": "Capacitación Laboral",
+      "descripcion": "Programas de capacitación especializados para mejorar las competencias técnicas y blandas de tu equipo.",
+      "imagen": "/images/capacitacion.png",
+      "servicio": "capacitacion"
+    },
+    {
+      "id": 3,
+      "titulo": "Diagnóstico Empresarial",
+      "descripcion": "Análisis profundo de tu negocio para identificar fortalezas, debilidades y oportunidades de mejora.",
+      "imagen": "/images/diagnostico.png",
+      "servicio": "diagnostico"
+    },
+    {
+      "id": 4,
+      "titulo": "Financiamiento",
+      "descripcion": "Acceso a líneas de crédito y programas de financiamiento adaptados a tus necesidades empresariales.",
+      "imagen": "/images/financiamiento.png",
+      "servicio": "financiamiento"
+    },
+    {
+      "id": 5,
+      "titulo": "Innovación Tecnológica",
+      "descripcion": "Implementación de soluciones tecnológicas modernas para aumentar la productividad y competitividad.",
+      "imagen": "/images/innovacion.png",
+      "servicio": "innovacion"
+    },
+    {
+      "id": 6,
+      "titulo": "Redes Empresariales",
+      "descripcion": "Espacios de conexión y colaboración entre empresarios para generar nuevas oportunidades de negocio.",
+      "imagen": "/images/redes.png",
+      "servicio": "redes"
+    }
+  ]
+}

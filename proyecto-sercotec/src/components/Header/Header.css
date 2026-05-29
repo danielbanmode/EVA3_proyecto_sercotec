@@ -1,0 +1,124 @@
+.header {
+  background: linear-gradient(135deg, #001a4d 0%, #3d52a0 50%, #4a5f9e 100%);
+  color: white;
+  padding: 8rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: rgba(230, 57, 70, 0.08);
+  border-radius: 50%;
+  z-index: 0;
+  animation: float 6s ease-in-out infinite;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: rgba(61, 82, 160, 0.1);
+  border-radius: 50%;
+  z-index: 0;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(20px); }
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.header p {
+  font-size: 1.4rem;
+  margin-bottom: 3rem;
+  color: white;
+  opacity: 1;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.header-btn {
+  background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+  color: white;
+  padding: 1rem 2.5rem;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(230, 57, 70, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.header-btn:hover {
+  background: linear-gradient(135deg, #d62828 0%, #c41c1c 100%);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(230, 57, 70, 0.4);
+}
+
+.header-btn:active {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 5rem 1.5rem;
+    min-height: 350px;
+  }
+
+  .header h1 {
+    font-size: 2.2rem;
+  }
+
+  .header p {
+    font-size: 1.1rem;
+  }
+
+  .header-btn {
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+  }
+}

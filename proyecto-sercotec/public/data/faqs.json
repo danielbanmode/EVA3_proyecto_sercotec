@@ -1,0 +1,54 @@
+{
+  "faqs": [
+    {
+      "id": 1,
+      "pregunta": "¿Cuáles son los requisitos para acceder a los servicios?",
+      "respuesta": "Nuestros servicios están disponibles para empresas constituidas que cumplan con los requisitos legales vigentes. Te recomendamos contactarnos para evaluar tu caso específico."
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Cuánto cuesta el asesoramiento empresarial?",
+      "respuesta": "Los costos varían según el tipo y alcance del asesoramiento. Realizamos cotizaciones personalizadas. Solicita una reunión con nuestro equipo."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Puedo acceder a más de un servicio simultáneamente?",
+      "respuesta": "Por supuesto. Muchas empresas optan por combinar varios servicios para maximizar resultados. Te ayudamos a diseñar un plan adaptado a tus necesidades."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Qué necesito llevar a la primera reunión?",
+      "respuesta": "Trae documentos básicos de tu empresa (RUT, cédula de identidad, estados financieros recientes). Nuestro equipo te guiará en el proceso."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Cómo se selecciona el asesor que me atenderá?",
+      "respuesta": "Asignamos un asesor especializado según tu sector e industria. Consideramos tu experiencia y necesidades específicas."
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Hay capacitaciones certificadas?",
+      "respuesta": "Sí, ofrecemos programas certificados internacionalmente. Consulta nuestro catálogo completo de capacitaciones."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Cuál es el proceso para acceder a financiamiento?",
+      "respuesta": "Realizamos una evaluación crediticia y luego te conectamos con instituciones financieras aliadas que mejor se adapten a tu perfil."
+    },
+    {
+      "id": 8,
+      "pregunta": "¿Las redes empresariales tienen costo?",
+      "respuesta": "Algunos eventos son gratuitos, otros tienen un costo simbólico. Te informaremos al solicitar la invitación."
+    },
+    {
+      "id": 9,
+      "pregunta": "¿Cuánto tiempo dura un diagnóstico empresarial?",
+      "respuesta": "Generalmente entre 4 a 8 semanas, dependiendo del tamaño y complejidad de tu empresa."
+    },
+    {
+      "id": 10,
+      "pregunta": "¿Ofrecen seguimiento después del servicio?",
+      "respuesta": "Sí, realizamos seguimiento periódico para evaluar el impacto de las recomendaciones implementadas."
+    }
+  ]
+}

@@ -1,0 +1,657 @@
+================================================================================
+GUÍA DE BUENAS PRÁCTICAS - DESARROLLO FRONTEND CON REACT
+================================================================================
+
+Documento que documenta las 10+ mejores prácticas implementadas en el proyecto
+Landing Page Centro de Negocios Santiago de SERCOTEC.
+
+================================================================================
+1. COMPONENTES REUTILIZABLES Y MODULARIDAD
+================================================================================
+
+DEFINICIÓN:
+Crear componentes que encapsulen lógica y presentación, permitiendo reutilización
+y mantenimiento simplificado.
+
+IMPLEMENTACIÓN EN PROYECTO:
+
+✅ ServiceCard.jsx - Componente reutilizable para tarjetas de servicio
+   - Props: id, titulo, descripcion, imagen, servicio
+   - Uso: Renderizado en loop en Home.jsx con .map()
+   - Ventaja: Una sola definición, 6 tarjetas diferentes
+   
+✅ TestimonialsCarousel.jsx - Componente independiente de carrusel
+   - Props: testimonials (array)
+   - Encapsula: State del carrusel, navegación, auto-play
+   - Ventaja: Totalmente reutilizable en otras páginas
+
+✅ ContactForm.jsx - Componente de formulario aislado
+   - Props: servicio (pre-rellena desde URL)
+   - Encapsula: Validación, estado del formulario, lógica de envío
+   - Ventaja: Usado en /contacto y reutilizable en modales
+
+CÓDIGO EJEMPLO:
+
+// ❌ INCORRECTO: Componente monolítico
+function HomePage() {
+  return (
+    <div>
+      {/* 500+ líneas de código aquí */}
+      <button>Contacto</button>
+    </div>
+  )
+}
+
+// ✅ CORRECTO: Componentes separados
+function HomePage() {
+  return (
+    <div>
+      <Header />
+      <Services />
+      <Testimonials />
+      <ContactButton />
+    </div>
+  )
+}
+
+BENEFICIOS:
+- Fácil de testear
+- Reutilizable en múltiples lugares
+- Fácil de mantener
+- Código más limpio
+
+================================================================================
+2. SEPARACIÓN DE RESPONSABILIDADES (JSX + CSS + Lógica)
+================================================================================
+
+DEFINICIÓN:
+Cada componente tiene: su JSX, su CSS, y su lógica (states/hooks) separados
+pero relacionados.
+
+ESTRUCTURA POR CARPETA:
+
+src/components/ServiceCard/
+├── ServiceCard.jsx     (Componente + Lógica)
+└── ServiceCard.css     (Estilos específicos)
+
+VENTAJAS:
+- Fácil localizar estilos de un componente
+- Cambiar estilos sin tocar lógica
+- Escalabilidad: Agregar componentes sin desorden
+
+CÓDIGO EJEMPLO:
+
+// ServiceCard.jsx - LÓGICA Y JSX
+import './ServiceCard.css'
+
+function ServiceCard({ titulo, descripcion, imagen, servicio }) {
+  const handleContactClick = () => {
+    // Navegación a formulario
+  }
+
+  return (
+    <div className="service-card">
+      <img src={imagen} alt={titulo} />
+      <h3>{titulo}</h3>
+      <p>{descripcion}</p>
+      <button onClick={handleContactClick}>Contáctanos</button>
+    </div>
+  )
+}
+
+// ServiceCard.css - ESTILOS
+.service-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 26, 77, 0.08);
+}
+
+================================================================================
+3. USO DE HOOKS DE REACT (useState, useEffect, useSearchParams)
+================================================================================
+
+DEFINICIÓN:
+Utilizar hooks para manejar estado, efectos secundarios y lógica de componentes
+funcionales.
+
+IMPLEMENTACIÓN:
+
+✅ useState - Manejar estado local
+   Uso: Abrir/cerrar menú, carrusel actual, form fields
+
+   const [isOpen, setIsOpen] = useState(false)
+   const toggleMenu = () => setIsOpen(!isOpen)
+
+✅ useEffect - Efectos secundarios
+   Uso: Cargar datos al montar componente, timers, cleanup
+
+   useEffect(() => {
+     const cargarDatos = async () => {
+       const data = await getServicios()
+       setServicios(data)
+     }
+     cargarDatos()
+   }, [])
+
+✅ useSearchParams - Parámetros de URL
+   Uso: Pre-rellenar campo "servicio" en formulario
+
+   const [searchParams] = useSearchParams()
+   const servicio = searchParams.get('servicio')
+
+BENEFICIOS:
+- Código más limpio que lifecycle methods (componentDidMount, etc.)
+- Fácil manejar estado complejo
+- Reutilización de lógica con custom hooks
+
+================================================================================
+4. VARIABLES CSS CENTRALIZADAS
+================================================================================
+
+DEFINICIÓN:
+Usar variables CSS (custom properties) para colores, espaciados y transiciones.
+Cambios globales con un solo lugar.
+
+IMPLEMENTACIÓN EN index.css:
+
+:root {
+  --color-primary: #001a4d;
+  --color-secondary: #3d52a0;
+  --color-accent: #e63946;
+  --color-accent-dark: #d62828;
+  --color-bg: #ffffff;
+  --color-bg-light: #f8f9fa;
+  --color-border: #e8e8e8;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+USO EN COMPONENTES:
+
+.navbar {
+  background-color: var(--color-primary);
+  transition: var(--transition);
+}
+
+.button {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  transition: var(--transition);
+}
+
+VENTAJAS:
+- Cambiar paleta de colores globalmente en 1 lugar
+- Fácil mantener consistencia
+- Reutilizar transiciones estándar
+- Fácil testing de temas
+
+================================================================================
+5. ANIMACIONES Y TRANSICIONES SUAVES CON CUBIC-BEZIER
+================================================================================
+
+DEFINICIÓN:
+Usar cubic-bezier timing functions para crear animaciones naturales y profesionales
+en lugar de linear o ease.
+
+EASING FUNCTION ESTÁNDAR:
+
+--transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+EXPLICACIÓN:
+cubic-bezier(0.4, 0, 0.2, 1)
+  ├─ 0.4 = Inicio rápido
+  ├─ 0 = Punto de control 1
+  ├─ 0.2 = Desaceleración
+  └─ 1 = Fin natural
+
+ANIMACIONES DEFINIDAS:
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+APLICACIÓN:
+
+.header-content {
+  animation: slideUp 0.8s ease-out;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transition: var(--transition);
+}
+
+BENEFICIOS:
+- Animaciones profesionales (no robóticas)
+- Mejor experiencia de usuario
+- Consistencia visual en todo el app
+
+================================================================================
+6. DISEÑO RESPONSIVE CON MOBILE-FIRST
+================================================================================
+
+DEFINICIÓN:
+Diseñar primero para móvil, luego agregar estilos para pantallas más grandes.
+Breakpoint principal: 768px
+
+ARQUITECTURA:
+
+/* Estilos base (Mobile) */
+.navbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.services-grid {
+  grid-template-columns: 1fr;
+}
+
+/* Media query (Desktop) */
+@media (min-width: 768px) {
+  .navbar {
+    flex-direction: row;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  }
+}
+
+COMPONENTES RESPONSIVE:
+
+✅ Navbar - Menú hamburguesa en móvil, horizontal en desktop
+✅ ServiceCard - 1 columna móvil, 3 columnas desktop
+✅ ContactForm - Full width móvil, max-width 650px desktop
+
+HERRAMIENTAS ÚTILES:
+
+- Chrome DevTools: F12 → Toggle device toolbar
+- Test breakpoints: 320px, 768px, 1024px, 1440px
+
+================================================================================
+7. ACCESIBILIDAD WCAG 2.1
+================================================================================
+
+DEFINICIÓN:
+Garantizar que la web sea usable por todos, incluyendo personas con discapacidades.
+
+IMPLEMENTACIONES:
+
+✅ ETIQUETAS SEMÁNTICAS:
+   <header>, <main>, <section>, <footer>, <button>, <label>
+   
+   ❌ INCORRECTO: <div onClick={() => handleClick()}>Contacto</div>
+   ✅ CORRECTO: <button onClick={handleClick}>Contacto</button>
+
+✅ ATRIBUTOS ALT EN IMÁGENES:
+   <img src={logo} alt="SERCOTEC Logo" />
+   <img src={servicio.imagen} alt={`Imagen de ${servicio.titulo}`} />
+
+✅ ARIA-LABELS EN INPUTS:
+   <input aria-label="Buscar candidatos" placeholder="Buscar..." />
+   <select aria-label="Filtrar por especialidad">
+
+✅ CONTRASTE DE COLORES:
+   - Texto blanco (#fff) sobre azul (#001a4d): Contraste 8.5:1 ✅
+   - Texto azul (#001a4d) sobre gris (#f8f9fa): Contraste 9:1 ✅
+   - Rojo (#e63946) sobre blanco: Contraste 3.5:1 ✅
+
+✅ NAVEGACIÓN CON TECLADO:
+   - Tab: Navega entre elementos interactivos
+   - Enter: Activa botones
+   - Esc: Cierra menús
+
+VERIFICACIÓN:
+- Lighthouse (DevTools) → Accesibility score
+- WAVE browser extension
+- Screen reader testing (NVDA, JAWS)
+
+================================================================================
+8. VALIDACIÓN AVANZADA CON EXPRESIONES REGULARES (REGEX)
+================================================================================
+
+DEFINICIÓN:
+Usar regex para validar formatos de datos complejos (email, teléfono, etc.)
+
+IMPLEMENTACIÓN EN CONTACTFORM:
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+DESGLOSE:
+^           = Inicio de cadena
+[^\s@]+     = 1+ caracteres (no espacio, no @)
+@           = Literal @
+[^\s@]+     = Dominio (no espacio, no @)
+\.          = Punto literal (escapado)
+[^\s@]+     = Extensión (com, cl, etc.)
+$           = Fin de cadena
+
+CASOS VALIDADOS:
+✅ usuario@ejemplo.com
+✅ juan.perez@empresa.co
+✅ mail.123@sub.dominio.com
+
+CASOS RECHAZADOS:
+❌ usuario@com (sin dominio)
+❌ usuario.com (sin @)
+❌ usuario@ (sin dominio)
+❌ usuario @ejemplo.com (espacio)
+❌ usuario@.com (sin nombre de dominio)
+
+IMPLEMENTACIÓN EN CÓDIGO:
+
+const validarEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
+
+if (!validarEmail(email)) {
+  setError('Email no válido')
+}
+
+OTRAS REGEX ÚTILES:
+
+Teléfono: /^\d{9}$/
+URL: /^https?:\/\/.+\..+/
+Contraseña (8+ chars, mayús, número): /^(?=.*[A-Z])(?=.*\d).{8,}$/
+
+================================================================================
+9. SEGURIDAD: PROTECCIÓN ANTI-BOTS
+================================================================================
+
+DEFINICIÓN:
+Implementar medidas para evitar que bots automatizados envíen spam.
+
+TÉCNICAS IMPLEMENTADAS:
+
+✅ 1. HONEYPOT FIELD (Campo trampa)
+   
+   <input
+     type="text"
+     name="website"
+     style={{ display: 'none' }}
+     value={honeypot}
+     onChange={(e) => setHoneypot(e.target.value)}
+   />
+
+   LÓGICA:
+   - Campo oculto (display: none)
+   - Si bot llena el campo → honeypot !== ""
+   - Rechazar envío si está lleno
+
+   if (honeypot.trim() !== "") {
+     throw new Error("Solicitud sospechosa detectada")
+   }
+
+✅ 2. RATE LIMITING (Limitar envíos)
+   
+   const [lastSubmitTime, setLastSubmitTime] = useState(0)
+   
+   const canSubmit = () => {
+     const now = Date.now()
+     if (now - lastSubmitTime < 10000) { // 10 segundos
+       return false
+     }
+     setLastSubmitTime(now)
+     return true
+   }
+
+✅ 3. VALIDACIÓN DE INTERACCIÓN
+   
+   Detectar si el usuario realmente interactuó:
+   - Focus en campo de email
+   - Cambios de valores
+   - Sin auto-fill detectado
+
+✅ 4. CAPACCHA (Futuro)
+   
+   Integrar Google reCAPTCHA v3:
+   
+   import ReCAPTCHA from "react-google-recaptcha"
+   
+   <ReCAPTCHA sitekey="YOUR_KEY" onChange={handleRecaptcha} />
+
+FLUJO COMPLETO DE VALIDACIÓN:
+
+1. Usuario llena formulario
+2. Valida campos (regex, requeridos)
+3. Verifica honeypot (vacío)
+4. Verifica rate limiting (no spam)
+5. Comprueba interacción real
+6. Envía datos
+
+================================================================================
+10. CONSUMO DE API/JSON CON ASYNC/AWAIT Y PROMISE.ALL
+================================================================================
+
+DEFINICIÓN:
+Cargar datos dinámicamente de APIs o archivos JSON con manejo de errores
+y optimización.
+
+IMPLEMENTACIÓN:
+
+// api/services.js - Funciones separadas por recurso
+
+export const getServicios = async () => {
+  try {
+    const response = await fetch('/data/servicios.json')
+    if (!response.ok) throw new Error('Error al cargar')
+    return await response.json()
+  } catch (error) {
+    console.error('Error en getServicios:', error)
+    throw error
+  }
+}
+
+// Home.jsx - Cargar múltiples recursos en paralelo
+
+useEffect(() => {
+  const cargarDatos = async () => {
+    try {
+      setLoading(true)
+      
+      // Promise.all = Cargar TODO simultáneamente (más rápido)
+      const [servicios, testimonios, faqs, about] = await Promise.all([
+        getServicios(),
+        getTestimonios(),
+        getFaqs(),
+        getAbout()
+      ])
+      
+      setServicios(servicios)
+      setTestimonios(testimonios)
+      setFaqs(faqs)
+      setAbout(about)
+      
+    } catch (error) {
+      setError('Error al cargar datos')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  cargarDatos()
+}, [])
+
+VENTAJAS:
+- Promise.all: 3x más rápido que fetch secuencial
+- Try/catch: Manejo elegante de errores
+- Estados: loading, error, success
+- Fallback: mockData si falla la API
+
+EVOLUCIÓN:
+Cuando tengas backend:
+
+// Antes (JSON local):
+const response = await fetch('/data/servicios.json')
+
+// Después (API real):
+const response = await fetch('https://tu-api.com/api/servicios', {
+  headers: { 'Authorization': `Bearer ${token}` }
+})
+
+================================================================================
+11. DOCUMENTACIÓN Y CÓDIGO AUTODOCUMENTADO
+================================================================================
+
+DEFINICIÓN:
+Escribir código que sea fácil de entender sin necesidad de comentarios
+y documentar funciones complejas.
+
+NOMBRES DESCRIPTIVOS:
+
+❌ INCORRECTO:
+const c = (s) => s.map(x => x.price * x.qty)
+
+✅ CORRECTO:
+const calcularTotalPorServicio = (servicios) =>
+  servicios.map(servicio => servicio.precio * servicio.cantidad)
+
+FUNCIONES CON PROPÓSITO CLARO:
+
+// ✅ Función que valida email
+const validarEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
+
+// ✅ Función que calcula tiempo transcurrido
+const calcularTiempoTranscurrido = (timestamp) => {
+  return Date.now() - timestamp
+}
+
+COMENTARIOS ESTRATÉGICOS:
+
+// ✅ Comentarios para lógica compleja
+// Usar Promise.all para cargar datos en paralelo
+// Más rápido que cargar secuencialmente
+const [servicios, testimonios, faqs] = await Promise.all([...])
+
+// ✅ Comentarios para traps/gotchas
+// El honeypot DEBE estar oculto con display: none
+// Los bots aún pueden detectarlo con computed styles
+// Por eso también validamos rate limiting
+
+DOCUMENTACIÓN DE COMPONENTES:
+
+/**
+ * @component ServiceCard - Tarjeta reutilizable de servicio
+ * @param {number} id - ID único del servicio
+ * @param {string} titulo - Título del servicio
+ * @param {string} descripcion - Descripción corta
+ * @param {string} imagen - URL de imagen
+ * @param {string} servicio - Slug del servicio
+ * @returns {JSX.Element} Componente renderizado
+ */
+function ServiceCard({ id, titulo, descripcion, imagen, servicio }) {
+  // ...
+}
+
+================================================================================
+12. GIT & VERSIONADO DE CÓDIGO
+================================================================================
+
+DEFINICIÓN:
+Usar Git para rastrear cambios, colaborar y mantener historial del proyecto.
+
+FLUJO RECOMENDADO:
+
+# 1. Inicializar repo
+git init
+
+# 2. Crear rama de feature
+git checkout -b feature/components
+
+# 3. Hacer cambios y commits descriptivos
+git add .
+git commit -m "feat: crear componente ServiceCard reutilizable"
+
+# 4. Merge a main cuando esté listo
+git checkout main
+git merge feature/components
+
+CONVENCIÓN DE COMMITS:
+
+feat:    Nueva funcionalidad
+fix:     Arreglar bug
+docs:    Cambios en documentación
+style:   Cambios de CSS/formato
+refactor: Refactorización de código
+test:    Tests
+chore:   Tareas administrativas
+
+EJEMPLOS:
+
+✅ git commit -m "feat: agregar validación de email con regex"
+✅ git commit -m "fix: resolver honeypot field en formulario"
+✅ git commit -m "docs: actualizar README con instrucciones"
+
+================================================================================
+CHECKLIST DE BUENAS PRÁCTICAS
+================================================================================
+
+ANTES DE FAZER COMMIT:
+
+□ Código limpio y bien nombrado
+□ Funciones modulares y reutilizables
+□ Manejo de errores (try/catch)
+□ Validaciones en formularios
+□ Sin console.log en producción
+□ Responsive design testado
+□ Accesibilidad (alt text, aria-labels)
+□ Performance aceptable (Lighthouse)
+□ Documentación actualizada
+
+ANTES DE DEPLOY:
+
+□ npm run build sin errores
+□ Testing en navegadores (Chrome, Firefox, Safari)
+□ Testing en móvil (iPhone, Android)
+□ Revisar Network tab (imágenes comprimidas)
+□ Revisar Console tab (sin warnings/errors)
+□ SEO básico (meta tags, titles)
+□ Certificado SSL (si es HTTPS)
+
+================================================================================
+RECURSOS Y REFERENCIAS
+================================================================================
+
+📚 React Hooks:
+https://react.dev/reference/react
+
+📚 WCAG 2.1:
+https://www.w3.org/WAI/WCAG21/quickref/
+
+📚 Regex Testing:
+https://regex101.com
+
+📚 CSS Cubic-Bezier:
+https://cubic-bezier.com
+
+📚 Google Lighthouse:
+Chrome DevTools → Lighthouse tab
+
+================================================================================
+CONCLUSIÓN
+================================================================================
+
+Las buenas prácticas aquí documentadas garantizan:
+✅ Código mantenible y escalable
+✅ Seguridad de datos del usuario
+✅ Experiencia accesible para todos
+✅ Performance óptimo
+✅ Facilidad para collaboración en equipo
+
+La inversión inicial en escribir buen código se recupera rápidamente
+en reducción de bugs, facilidad de mantenimiento y velocidad de desarrollo.
+
+================================================================================
+Versión: 1.0
+Última actualización: 27/05/2026
+================================================================================

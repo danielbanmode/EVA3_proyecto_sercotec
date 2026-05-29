@@ -1,0 +1,44 @@
+{
+  "testimonios": [
+    {
+      "id": 1,
+      "texto": "El asesoramiento que recibimos fue transformador para nuestro negocio. Aumentamos nuestras ventas en un 45% en 6 meses.",
+      "nombre": "Roberto García",
+      "cargo": "Gerente General",
+      "empresa": "Empresa Constructora ABC",
+      "rating": "⭐⭐⭐⭐⭐"
+    },
+    {
+      "id": 2,
+      "texto": "La capacitación laboral mejoró significativamente las competencias de nuestro equipo. Recomendamos ampliamente sus servicios.",
+      "nombre": "María López",
+      "cargo": "Directora de Recursos Humanos",
+      "empresa": "Importadora XYZ",
+      "rating": "⭐⭐⭐⭐⭐"
+    },
+    {
+      "id": 3,
+      "texto": "Gracias al diagnóstico empresarial pudimos identificar y corregir los puntos débiles de nuestro negocio.",
+      "nombre": "Carlos Rodríguez",
+      "cargo": "Propietario",
+      "empresa": "Servicios Inmobiliarios DEF",
+      "rating": "⭐⭐⭐⭐⭐"
+    },
+    {
+      "id": 4,
+      "texto": "El acceso a financiamiento fue la solución que necesitábamos para expandir nuestras operaciones.",
+      "nombre": "Patricia Martínez",
+      "cargo": "Gerente de Finanzas",
+      "empresa": "Retail GHI",
+      "rating": "⭐⭐⭐⭐"
+    },
+    {
+      "id": 5,
+      "texto": "Las redes empresariales nos permitieron conectar con proveedores y clientes clave para nuestro crecimiento.",
+      "nombre": "Jorge Fernández",
+      "cargo": "Emprendedor",
+      "empresa": "Startup JKL",
+      "rating": "⭐⭐⭐⭐⭐"
+    }
+  ]
+}
